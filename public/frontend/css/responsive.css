@@ -1,0 +1,260 @@
+@media (max-width: 1400px) {
+
+    .right_ul_navigation li:not(:last-child) a,
+    .left_ul_navigation li:not(:last-child) a {
+        margin-right: 60px;
+    }
+
+    .inside_caption_text {
+        width: 65%;
+    }
+
+    .mosaic .tl {
+        background-position: unset;
+        width: unset;
+        position: relative;
+        left: unset;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .right_ul_navigation li:not(:last-child) a,
+    .left_ul_navigation li:not(:last-child) a {
+        margin-right: 36px;
+    }
+
+    .about_product_img {
+        margin-top: 0;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .mobile_view{
+        display: block;
+    }
+    .for_desktop{
+        display: none;
+    }
+    .contact_form_wrapper {
+        margin-top: 25px;
+    }
+
+    .inner_contact_background_wrapper::before {
+        width: 100%;
+    }
+
+    .footer_quicklink_wrapper {
+        width: 100%;
+    }
+
+    .contact_us_wrapper {
+        width: 100%;
+        margin: 40px auto;
+    }
+
+    .ads-wrapper_1 {
+        flex-direction: column;
+    }
+
+    .ads-image_1,
+    .footer-above-contact-link {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .business_wrapper {
+        padding-right: 0;
+
+    }
+
+    .tcl {
+        flex-direction: column;
+    }
+
+    .product_half_wrapper,
+    .product_card {
+        margin-bottom: 25px;
+    }
+
+    .message_card {
+        margin-bottom: 55px;
+    }
+
+    .img_cover {
+        width: 260px;
+        height: 260px;
+        margin-left: 0px;
+    }
+
+    .about_product_img::after,
+    .about_product_img::before {
+        left: 13px;
+        top: -36px;
+    }
+
+    #site_header_wrapper {
+        position: relative;
+    }
+
+    .mobile_logo {
+        display: block;
+    }
+
+    .mobile_logo img {
+        height: 40px;
+    }
+
+    nav#menu {
+        background-color: #e83840;
+    }
+
+    .navbar-toggler {
+        background-color: #ffffff;
+    }
+
+    .inside_caption_text {
+        width: 88%;
+        padding: 12px;
+        margin-top: 28px;
+    }
+
+    .inside_caption_text p {
+        font-size: 16px;
+    }
+
+    .custom_navbar_brand {
+        display: none;
+    }
+
+    .menu_top_position {
+        margin: unset !important;
+        display: block;
+        width: 100%;
+    }
+
+    .menu_top_position .nav-item {
+        margin: 14px 0;
+    }
+
+    #site_header_wrapper .navbar-nav li a {
+        display: block;
+    }
+
+    #site_header_wrapper .navbar-nav li a:hover,
+    #site_header_wrapper .navbar-nav li .active {
+        background: linear-gradient(97.8deg, #EF323A -12.27%, #740D12 100%);
+    }
+
+    .right_ul_navigation li:not(:last-child) a,
+    .left_ul_navigation li:not(:last-child) a {
+        margin-right: 0;
+    }
+}
+
+@media (max-width:769px) {
+    #about_customer_says_wrapper:before {
+        width: 212px;
+        height: 342px;
+    }
+
+    #sister_company_link::before {
+        width: 327px;
+    }
+
+    #customer_says_wrapper:before {
+        display: none;
+    }
+
+    .carousle_caption_wrapper span {
+        font-size: 58px;
+    }
+
+    .carousle_caption_wrapper h2 {
+        font-size: 86px;
+        line-height: 80px;
+    }
+
+    .img_cover {
+        margin-left: 0;
+    }
+
+    .about_product_img::after,
+    .about_product_img::before {
+        top: -36px;
+    }
+}
+
+@media (max-width:767px) {
+
+
+    .link_button_wrapper .btn {
+        margin-bottom: 25px;
+        z-index: 2;
+    }
+
+    .link_button_wrapper .d-flex {
+        flex-direction: column;
+    }
+
+    .img_cover {
+        margin: 0 auto;
+    }
+
+    .about_product_img {
+        margin: 50px auto 0;
+    }
+
+    .carousle_caption_wrapper span {
+        font-size: 40px;
+    }
+
+    .carousle_caption_wrapper h2 {
+        font-size: 44px;
+        line-height: 30px;
+    }
+}
+
+@media (max-width:522px) {
+    .contact_form_wrapper .btn {
+        padding: 6px 40px;
+    }
+
+    .vacancy_content_schedule span {
+        margin-bottom: 12px;
+    }
+
+    #our_product_page_wrapper::after {
+        height: 162px;
+    }
+
+    .mosaic .tl {
+        height: unset;
+        top: unset;
+
+    }
+
+    .carousle_caption_wrapper {
+        height: 100%;
+    }
+}
+
+@media (max-width:467px) {
+    :root {
+        --size-small: 89px;
+    }
+
+    .inside_caption_text {
+        display: none;
+    }
+
+    .carousle_caption_wrapper {
+        height: 56%;
+    }
+
+    .scene {
+        bottom: 59px;
+    }
+}

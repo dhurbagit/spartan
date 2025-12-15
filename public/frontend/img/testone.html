@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Center-Only Avatar Carousel (Slot + Clone)</title>
+<style>
+  :root{
+    --brand:#A00007; --bg:#f7f2eb;
+    --size-small:68px; --size-big:110px; --ring:3px;
+    --card:#fff; --card-bd:#e7e0d6;
+  }
+  body{
+    margin:0; font-family:Lato,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--bg); min-height:100dvh; display:grid; place-items:center;
+  }
+
+  /* Layout: avatars (left) + description (right) */
+  .tcl{
+    display:grid; align-items:center; gap:28px;
+    grid-template-columns:minmax(260px, 320px) minmax(360px, 520px);
+    padding:10px;
+  }
+
+  /* LEFT: three fixed slots (top/center/bottom) */
+  .tc-stack{ display:flex; flex-direction:column; align-items:center; gap:16px; width:150px; }
+  .tc-slot{ /* receives a cloned .tc-item */ }
+  .tc-item{ text-align:center; }
+
+  .tc-avatar{
+    width:var(--size-small); height:var(--size-small);
+    border-radius:50%; overflow:hidden; display:block;
+    border: var(--ring) solid transparent;
+    opacity:.45; filter:grayscale(20%);
+    cursor:pointer; transition:.25s;
+  }
+  .tc-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* name/role hidden by default (only center shows) */
+  .tc-meta{ display:none; margin-top:8px; }
+  .tc-name{ margin:0; font-size:14px; font-weight:700; }
+  .tc-role{ margin:2px 0 0; font-size:12px; color:#666; }
+
+  /* CENTER slot look = the only "active" style */
+  .tc-slot.center .tc-avatar{
+    width:var(--size-big); height:var(--size-big);
+    border-color:var(--brand); box-shadow:0 6px 20px rgb(0 0 0 / 12%);
+    opacity:1; filter:none; cursor:default;
+  }
+  .tc-slot.center .tc-meta{ display:block; }
+
+  /* RIGHT: description card */
+  .tc-card{
+    background:var(--card); border:1px solid var(--card-bd);
+    border-radius:12px; padding:22px; min-height:128px;
+  }
+  .tc-quote{ margin:0; line-height:1.6; color:#2b2b2b; font-size:15px; }
+  .tc-nav{ margin-top:14px; display:flex; gap:12px; }
+  .tc-btn{
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--brand); background:#fff; color:var(--brand);
+    display:grid; place-items:center; font-size:18px; cursor:pointer; transition:.2s;
+  }
+  .tc-btn:hover{ background:var(--brand); color:#fff; }
+  .tc-btn:focus-visible{ outline:2px solid var(--brand); outline-offset:3px; }
+
+  @media (max-width:720px){
+    .tcl{ grid-template-columns:1fr; gap:18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="tcl" role="region" aria-label="Testimonials">
+  <!-- LEFT: fixed slots -->
+  <div class="tc-stack">
+    <div id="slotPrev"   class="tc-slot prev"></div>
+    <div id="slotCenter" class="tc-slot center"></div>
+    <div id="slotNext"   class="tc-slot next"></div>
+  </div>
+
+  <!-- RIGHT: description of current (center) -->
+  <div class="tc-card">
+    <p id="tcQuote" class="tc-quote"></p>
+    <div class="tc-nav">
+      <button class="tc-btn tc-prev" aria-label="Previous">←</button>
+      <button class="tc-btn tc-next" aria-label="Next">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCE LIST (real items live here; JS clones from here) -->
+<div id="tcSource" hidden>
+  <div class="tc-item" data-index="0">
+    <a class="tc-avatar"><img src="https://i.pravatar.cc/200?img=21" alt="Sophia Lee"></a>
+    <div class="tc-meta"><p class="tc-name">Sophia Lee</p><p class="tc-role">Customer</p></div>
+    <p class="tc-desc" hidden>I love how fresh and consistent everything tastes. Perfect for quick meals without compromising quality.</p>
+  </div>
+
+  <div class="tc-item" data-index="1">
+    <a class="tc-avatar"><img src="https://i.pravatar.cc/200?img=5" alt="Harry Maguire"></a>
+    <div class="tc-meta"><p class="tc-name">Harry Maguire</p><p class="tc-role">Dealer</p></div>
+    <p class="tc-desc" hidden>Hygiene and freshness really matter to me, and this company delivers both every time.</p>
+  </div>
+
+  <div class="tc-item" data-index="2">
+    <a class="tc-avatar"><img src="https://i.pravatar.cc/200?img=12" alt="David Smith"></a>
+    <div class="tc-meta"><p class="tc-name">David Smith</p><p class="tc-role">Retailer</p></div>
+    <p class="tc-desc" hidden>Our customers keep returning for the taste and reliability. Consistency matters.</p>
+  </div>
+
+  <div class="tc-item" data-index="3">
+    <a class="tc-avatar"><img src="https://i.pravatar.cc/200?img=32" alt="Aarav Karki"></a>
+    <div class="tc-meta"><p class="tc-name">Aarav Karki</p><p class="tc-role">Chef Partner</p></div>
+    <p class="tc-desc" hidden>The flavors are clean and dependable, which makes menu planning faster.</p>
+  </div>
+
+  <div class="tc-item" data-index="4">
+    <a class="tc-avatar"><img src="https://i.pravatar.cc/200?img=52" alt="Riya Sharma"></a>
+    <div class="tc-meta"><p class="tc-name">Riya Sharma</p><p class="tc-role">Distributor</p></div>
+    <p class="tc-desc" hidden>Logistics are smooth and stock moves quickly—quality builds demand.</p>
+  </div>
+</div>
+
+<script>
+  // Helpers
+  const wrap = (i,len)=> (i % len + len) % len;
+
+  // Grab source items (real data only lives here)
+  const source = document.getElementById('tcSource');
+  const items  = Array.from(source.querySelectorAll('.tc-item'));
+
+  // Slots (we will insert CLONES here each time)
+  const slotPrev   = document.getElementById('slotPrev');
+  const slotCenter = document.getElementById('slotCenter');
+  const slotNext   = document.getElementById('slotNext');
+
+  // UI
+  const quoteEl  = document.getElementById('tcQuote');
+  const prevBtn  = document.querySelector('.tc-prev');
+  const nextBtn  = document.querySelector('.tc-next');
+
+  // Default center: middle of first three (index 1) if >=3, else 0
+  let current = items.length >= 3 ? 1 : 0;
+
+  function cloneInto(slotEl, itemIdx, makeFocusable = false){
+    slotEl.innerHTML = ''; // clear old
+    const clone = items[itemIdx].cloneNode(true);
+
+    // Clicking avatar in any slot should re-center to THAT real index
+    const avatar = clone.querySelector('.tc-avatar');
+    if (avatar) {
+      if (!avatar.getAttribute('href')) {
+        avatar.setAttribute('role','button');
+        avatar.setAttribute('tabindex','0');
+      }
+      avatar.addEventListener('click', () => render(itemIdx));
+      avatar.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault(); render(itemIdx);
+        }
+      });
+    }
+    slotEl.appendChild(clone);
+
+    if (makeFocusable && avatar) {
+      requestAnimationFrame(() => avatar.focus({ preventScroll: true }));
+    }
+  }
+
+  function render(centerIdx){
+    if (!items.length) return;
+    current = wrap(centerIdx, items.length);
+
+    const prevIdx = wrap(current - 1, items.length);
+    const nextIdx = wrap(current + 1, items.length);
+
+    // Fill fixed slots with CLONES so order is always prev / center / next
+    cloneInto(slotPrev,   prevIdx,   false); // when first is centered, this shows last clone
+    cloneInto(slotCenter, current,   true);  // center is the only active-looking slot
+    cloneInto(slotNext,   nextIdx,   false); // when last is centered, this shows first clone
+
+    // Description from the REAL center item
+    const desc = items[current].querySelector('.tc-desc');
+    quoteEl.textContent = desc ? desc.textContent.trim() : '';
+  }
+
+  // Controls (wrap-around → first/last also land center-active)
+  prevBtn.addEventListener('click', () => render(current - 1));
+  nextBtn.addEventListener('click', () => render(current + 1));
+
+  // Keyboard arrows
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') render(current + 1);
+    if (e.key === 'ArrowLeft')  render(current - 1);
+  });
+
+  // Init
+  render(current);
+</script>
+</body>
+</html>

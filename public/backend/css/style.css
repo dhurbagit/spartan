@@ -1,0 +1,435 @@
+.sidebar .sidebar-brand {
+    font-size: 13px !important;
+}
+
+.login_image_wrapper img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.vertical_middle {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.vertical_center_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+/* on off button  */
+.switch-button {
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #b3b3b3;
+    width: 67px;
+    height: 27px;
+    padding: 4px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.switch-button input[type=checkbox] {
+    display: none;
+}
+
+.switch-button label {
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 1px 1px #fff inset;
+    box-shadow: 0 0 1px 1px #FFF inset;
+    background-color: #ffffff;
+    margin: 0;
+    height: 19px;
+    width: 19px;
+    z-index: 1;
+    display: inline-block;
+    cursor: pointer;
+    background-clip: padding-box;
+}
+
+.switch-button label:before {
+    position: absolute;
+    font-size: 0.8462rem;
+    font-weight: 600;
+    z-index: 0;
+    content: "OFF";
+    right: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 27px;
+    top: 0;
+    text-align: right;
+    padding-right: 10px;
+    color: #ffffff;
+}
+
+.switch-button input[type=checkbox]:checked+span {
+    background-color: #fe669e;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+.switch-button input[type=checkbox]:checked+span label {
+    float: right;
+    border-color: #fe4d8e;
+}
+
+.switch-button input[type=checkbox]:checked+span label:before {
+    position: absolute;
+    font-size: 0.8462rem;
+    font-weight: 600;
+    z-index: 0;
+    content: "ON";
+    color: #ffffff;
+    left: 0;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.switch-button.switch-button-yesno label:before {
+    content: "NO";
+}
+
+.switch-button.switch-button-yesno input[type=checkbox]:checked+span label:before {
+    content: "YES";
+}
+
+/* End on off button  */
+.trip_thumbnail {
+    display: flex;
+    align-items: center;
+}
+
+.trip_thumbnail input {
+    height: 43px;
+}
+
+.trip_thumbnail img {
+    height: 40px;
+    width: 60px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+/* nested dragable menu -------------------------- */
+.dd-item {
+    display: flex !important;
+    align-items: center;
+}
+
+.dd.nestable {
+    margin-bottom: 25px;
+}
+
+
+.flex_box_wrapper .btn {
+    padding: 5px 8px;
+    margin-left: 10px;
+}
+
+.flex_box_wrapper .btn span {
+    font-size: 17px;
+}
+
+.flex_box_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.dd {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: 600px;
+    list-style: none;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.dd-list li {
+    margin-top: 10px;
+}
+
+.dd-list {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dd-list .dd-list {
+    padding-left: 30px;
+}
+
+.dd-collapsed .dd-list {
+    display: none;
+}
+
+.dd-item,
+.dd-empty,
+.dd-placeholder {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.dd-handle {
+    width: 100%;
+    background-color: #4a6fdc;
+    color: white;
+    padding: 8px 12px;
+}
+
+.dd-item>button {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    width: 25px;
+    height: 36px;
+    padding: 0;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 0;
+    background: #4CAF50;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+.dd-item>button:before {
+    content: '+';
+    display: block;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    text-indent: 0;
+}
+
+.dd-item>button[data-action="collapse"]:before {
+    content: '-';
+}
+
+.dd-placeholder,
+.dd-empty {
+    margin: 5px 0;
+    padding: 0;
+    min-height: 30px;
+    background: #f2fbff;
+    border: 1px dashed #b6bcbf;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.dd-empty {
+    border: 1px dashed #bbb;
+    min-height: 100px;
+    background-color: #e5e5e5;
+    background-image: -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+        -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-image: -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+        -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-image: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+        linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+}
+
+.dd-dragel {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.dd-dragel>.dd-item .dd-handle {
+    margin-top: 0;
+}
+
+.dd-dragel .dd-handle {
+    -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .1);
+}
+
+/**
+  * Nestable Extras
+  */
+.nestable-lists {
+    display: block;
+    clear: both;
+    padding: 30px 0;
+    width: 100%;
+    border: 0;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+}
+
+#nestable-menu {
+    padding: 0;
+    margin: 20px 0;
+}
+
+#nestable-output,
+#nestable2-output {
+    width: 100%;
+    height: 7em;
+    font-size: 0.75em;
+    line-height: 1.333333em;
+    font-family: Consolas, monospace;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+#nestable2 .dd-handle {
+    color: #fff;
+    border: 1px solid #999;
+    background: #bbb;
+    background: -webkit-linear-gradient(top, #bbb 0%, #999 100%);
+    background: -moz-linear-gradient(top, #bbb 0%, #999 100%);
+    background: linear-gradient(top, #bbb 0%, #999 100%);
+}
+
+#nestable2 .dd-handle:hover {
+    background: #bbb;
+}
+
+#nestable2 .dd-item>button:before {
+    color: #fff;
+}
+
+.dd {
+    width: 80%;
+}
+
+.dd+.dd {
+    margin-left: 2%;
+}
+
+.dd-hover>.dd-handle {
+    background: #2ea8e5 !important;
+}
+
+/**
+  * Nestable Draggable Handles
+  */
+.dd3-content {
+    display: block;
+    height: 30px;
+    margin: 5px 0;
+    padding: 5px 10px 5px 40px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    background: -webkit-linear-gradient(top, #fafafa 0%, #eee 100%);
+    background: -moz-linear-gradient(top, #fafafa 0%, #eee 100%);
+    background: linear-gradient(top, #fafafa 0%, #eee 100%);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.dd3-content:hover {
+    color: #2ea8e5;
+    background: #fff;
+}
+
+.dd-dragel>.dd3-item>.dd3-content {
+    margin: 0;
+}
+
+.dd3-item>button {
+    margin-left: 30px;
+}
+
+.dd3-handle {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    width: 30px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid #aaa;
+    background: #ddd;
+    background: -webkit-linear-gradient(top, #ddd 0%, #bbb 100%);
+    background: -moz-linear-gradient(top, #ddd 0%, #bbb 100%);
+    background: linear-gradient(top, #ddd 0%, #bbb 100%);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dd3-handle:before {
+    content: '≡';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 100%;
+    text-align: center;
+    text-indent: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.dd3-handle:hover {
+    background: #ddd;
+}
+
+
+/*
+  * Nestable++
+  */
+
+
+#menu-editor {
+    margin-top: 40px;
+}
+
+#saveButton {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.output-container {
+    margin-top: 20px;
+}
+
+#json-output {
+    margin-top: 20px;
+}
+
+/* End nested dragable menu  --------------------------------------------------------*/
+#site_setting .nav-link {
+    border: none;
+}
+
+#site_setting .nav-item:not(:first-child) {
+    margin-left: 15px;
+}
